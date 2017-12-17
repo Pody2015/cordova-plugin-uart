@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-uart" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>uart</name>
+    <description>uart cordova plugin for AndroidThings</description>
+    <author>Shinya Suefusa</author>
+    <keywords>AndroidThings, raspberry pi 3</keywords>
+    <license>MIT</license>
+  	<engines>
+    	<engine name="cordova-android" version=">6.0.0"/>
+  	</engines>
+    <js-module name="uart" src="www/uart.js">
+        <clobbers target="cordova.plugins.uart" />
+    </js-module>
+    <platform name="android">
+    	<config-file target="res/xml/config.xml" parent="/*">
+    		<feature name="uart">
+    			<param name="android-package" value="org.apache.cordova.things.uartPlugin"/>
+    		</feature>
+    	</config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <uses-library android:name="com.google.android.things"/>
+        </config-file>
+    	<source-file src="src/android/uartPlugin.java" target-dir="src/org/apache/cordova/things"/>
+    	<source-file src="src/android/build-extras.gradle" target-dir="."/>
+        <framework src="com.google.android.things:androidthings:0.6-devpreview"/>
+    </platform>
+</plugin>
